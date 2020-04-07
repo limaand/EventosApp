@@ -13,15 +13,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Configuration
 public class DataConfiguration {
     
-	/*@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource datasource =  new DriverManagerDataSource();
-		datasource.setDriverClassName("com.mysql.jdbc.Driver");
-		datasource.setUrl("jdbc:mysql://localhost:3306/eventosapp");
-		datasource.setUsername("root");
-		datasource.setPassword("");
-	    return dataSource();	
-	}*/
 	
 	
 	@Bean
@@ -37,8 +28,7 @@ public class DataConfiguration {
 	    return dataSource;
 	}
 	
-	
-	
+		
 	
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
@@ -48,7 +38,7 @@ public class DataConfiguration {
 	    adapter.setGenerateDdl(true);
 	    adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
 	    
-	    //adapter.setPrepareConnection(true);
+	    adapter.setPrepareConnection(true);
 	    return adapter;
 	}
 	
