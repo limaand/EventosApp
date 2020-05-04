@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eventos.model.Convidado;
 import com.eventos.model.Evento;
+import com.eventos.repository.ConvidadoRepository;
 import com.eventos.repository.EventoRepository;
 
 @Controller
@@ -16,6 +18,8 @@ public class EventoController {
 	@Autowired
 	private EventoRepository er; 
 	
+	@Autowired
+	private ConvidadoRepository cr; 
 	
 	
 	
@@ -41,7 +45,7 @@ public class EventoController {
 		
 	}
 	
-	@RequestMapping("detalhesEvento/{codigo}")
+	@RequestMapping(value="/detalhesEvento/{codigo}", method=RequestMethod.GET )
 	public ModelAndView detalhesEvento(@PathVariable("codigo") long codigo) {
 		
 		Evento evento = er.findByCodigo(codigo);
@@ -50,6 +54,22 @@ public class EventoController {
 		return mv;
 		
 	}
+	
+	
+	@RequestMapping(value="/detalhesEvento/{codigo}", method=RequestMethod.POST )
+	public String detalhesEvento(@PathVariable("codigo") long codigo, Convidado convidado) {
+		Evento evento = er.findByCodigo(codigo);
+		convidado.setEvento(evento);
+		
+		cr.save(convidado);
+		
+		return "redirect:/detalhesEvento/{codigo}";
+		
+	}
+	
+	
+	
+	
 
 
 }
