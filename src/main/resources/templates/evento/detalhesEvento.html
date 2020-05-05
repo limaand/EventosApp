@@ -20,15 +20,15 @@
 
 
 	<div class="container">
-		
+
 		<br>
-				<h3>Detalhe do Evento</h3>
-				
-				<hr />
-		
+		<h3>Detalhe do Evento</h3>
+
+		<hr />
+
 		<div class="row">
 			<div class="col-sm-6">
-				
+
 
 				<p>
 					Evento: <span th:text="${evento.nome}"> </span>
@@ -42,17 +42,21 @@
 				<p>
 					Horário: <span th:text="${evento.horario}"> </span>
 				</p>
-				
+
 
 
 			</div>
 
 		</div>
-		
+
 		<hr />
 
 		<div id="row">
 			<div class="col-sm-8">
+				
+				<th:block th:include="mensagemValidacao"></th:block>
+				
+				
 				<form method="post">
 					<div class="form-group">
 						<label for="nome">Convidado:</label> <input type="text"
@@ -71,6 +75,24 @@
 
 			</div>
 
+		</div>
+
+		<hr>
+		
+		<h5> Lista de Convidados  </h5><br><br>
+		<div class="container" th:each="convidado: ${convidados}">
+			<div class="row">
+				<div class="col-sm-4">
+				<p><span th:text=${convidado.nomeConvidado} ></span></p>
+				
+				
+				</div>
+
+				<div class="col-sm-3">
+				  <p><span th:text=${convidado.rg} ></span></p>
+				
+				</div>
+			</div>
 		</div>
 	</div>
 
